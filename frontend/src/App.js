@@ -2,27 +2,36 @@ import React, { useState, useEffect } from 'react'
 
 function App() {
 
-  const [data, setData] = useState([{}])
+  const [tables, setTables] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("/members").then(
+    fetch("/sakila").then(
       res => res.json()
     ).then(
       data => {
-        setData(data)
-        console.log(data)
+        if (data.error) {
+          console.error("Error fetching data:", data.error)
+        } else {
+          setTables(data.tables)
+        }
+        setLoading(false)
       }
     )    
   }, [])
+
+
   
   return (
     <div>
-      {(typeof data.members === 'undefined') ? (
+      {loading ? (
         <p>Loading...</p>
       ) : (
-        data.members.map((member, i) => (
-          <p key={i}>{member}</p>
-        ))
+        <ul>
+          {tables.map((table, i) => (
+            <li key={i}>{table}</li>
+          ))}
+        </ul>
       )}
     </div>
   )
