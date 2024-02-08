@@ -1,0 +1,13 @@
+gotta run the venv: source venv/bin/activate
+(https://www.youtube.com/watch?v=7LNl2JlZKHA)
+
+use this for sql database:
+https://geekpython.in/create-and-integrate-mysql-database-with-flask-app
+
+to start the backend:
+in /backend:
+    python3 server.py
+
+to start the frontend:
+in /frontend:
+    npm start
